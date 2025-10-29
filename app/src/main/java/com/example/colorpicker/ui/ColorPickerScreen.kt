@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.colorpicker.ui.component.HueBar
+import com.example.colorpicker.ui.component.SaturationValuePicker
 
 @Composable
 fun ColorPickerScreen(
@@ -48,7 +49,18 @@ fun ColorPickerScreen(
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // SV Picker
-
+            SaturationValuePicker(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                hue = hue,
+                saturation = saturation,
+                value = value,
+                onColorChanged = { s, v ->
+                    saturation = s
+                    value = v
+                }
+            )
 
             // Hue Bar
             HueBar(
