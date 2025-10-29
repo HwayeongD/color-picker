@@ -54,7 +54,7 @@ fun HueBar(
         val y = size.height - ((hue / 360f) * size.height)
         drawCircle(
             color = Color.White,
-            radius = 8.dp.toPx(),
+            radius = 12.dp.toPx(),
             center = Offset(size.width / 2, y),
             style = Stroke(width = 2.dp.toPx())
         )

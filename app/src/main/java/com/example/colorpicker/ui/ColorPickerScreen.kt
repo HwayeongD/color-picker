@@ -44,7 +44,7 @@ fun ColorPickerScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(600.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             // SV Picker
@@ -53,7 +53,7 @@ fun ColorPickerScreen(
             // Hue Bar
             HueBar(
                 modifier = Modifier
-                    .width(40.dp)
+                    .width(80.dp)
                     .fillMaxHeight(),
                 hue = hue,
                 onHueChanged = { hue = it }
