@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -20,9 +21,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.colorpicker.ui.component.HueBar
 import com.example.colorpicker.ui.component.SaturationValuePicker
+import com.example.colorpicker.util.toHexString
 
 @Composable
 fun ColorPickerScreen(
@@ -82,7 +86,13 @@ fun ColorPickerScreen(
                 .background(selectedColor)
         )
 
-        // Color Code 입력
+        Spacer(modifier = Modifier.height(16.dp))
 
+        // Color Code 입력
+        Text(
+            text = "RGB: #${selectedColor.toHexString()}",
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Normal
+        )
     }
 }
