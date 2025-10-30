@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.colorpicker.ui.ColorPickerScreen
+import com.example.colorpicker.ui.component.ColorPickerTopBar
 import com.example.colorpicker.ui.theme.ColorPickerTheme
 
 class MainActivity : ComponentActivity() {
@@ -19,29 +21,17 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ColorPickerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {
+                        ColorPickerTopBar()
+                    }
+                ) { innerPadding ->
+                    ColorPickerScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ColorPickerTheme {
-        Greeting("Android")
     }
 }
