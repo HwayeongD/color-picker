@@ -2,6 +2,7 @@ package com.example.colorpicker.util
 
 import androidx.compose.ui.graphics.Color
 import com.example.colorpicker.model.CmykColor
+import com.example.colorpicker.model.HsvColor
 import com.example.colorpicker.model.LabColor
 import com.example.colorpicker.model.RgbColor
 import kotlin.math.pow
@@ -87,4 +88,54 @@ fun Color.toLab(): LabColor {
         a = a.roundToInt().coerceIn(-128, 127),
         b = bValue.roundToInt().coerceIn(-128, 127)
     )
+}
+
+/**
+ * Hex를 Color로 변환
+ * @param hex "#RRGGBB" 또는 "RRGGBB" 형식
+ * @return Color 객체, 유효하지 않으면 null
+ */
+fun String.toColorOrNull(): Color? {
+    return try {
+        val cleanHex = this.removePrefix("#").trim()
+
+        if(cleanHex.length != 6) return null
+
+        val r = cleanHex.substring(0, 2).toInt(16)
+        val g = cleanHex.substring(2, 4).toInt(16)
+        val b = cleanHex.substring(4, 6).toInt(16)
+
+        Color(r / 255f, g / 255f, b / 255f)
+    } catch (e: Exception) {
+        null
+    }
+}
+
+/**
+ * Color를 HSV로 변환
+ */
+fun Color.toHsv(): HsvColor {
+    val r = this.red
+    val g = this.green
+    val b = this.blue
+
+    val max = maxOf(r, g, b)
+    val min = minOf(r, g, b)
+    val delta = max - min
+
+    // Hue 계산
+    val hue = when {
+        delta == 0f -> 0f
+        max == r -> 60f * (((g - b) / delta) % 6)
+        max == g -> 60f * (((b - r) / delta) + 2)
+        else -> 60f * (((r - g) / delta) + 4)
+    }.let { if(it < 0) it + 360f else it }
+
+    // Saturation 계산
+    val saturation = if (max == 0f) 0f else delta / max
+
+    // Value 계산
+    val value = max
+
+    return HsvColor(hue, saturation, value)
 }

@@ -1,6 +1,18 @@
 package com.example.colorpicker.model
 
 /**
+ * HSV 색상 모델
+ * @param h Hue (0-360)
+ * @param s Saturation (0-1)
+ * @param v Value (0-1)
+ */
+data class HsvColor(
+    val h: Float,
+    val s: Float,
+    val v: Float
+)
+
+/**
  * RGB 색상 모델
  * @param r Red (0-255)
  * @param g Green (0-255)
